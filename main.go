@@ -1,16 +1,16 @@
 package main
 
 import (
-	"2021/day2"
+	"2021/day3"
 	"fmt"
 )
 
 func main() {
-	err := day2.Run()
+	err := day3.Run()
 	if err != nil {
 		fmt.Printf("Error1: %s", err)
 	}
-	err = day2.Run2()
+	err = day3.Run2()
 	if err != nil {
 		fmt.Printf("Error2: %s", err)
 	}
