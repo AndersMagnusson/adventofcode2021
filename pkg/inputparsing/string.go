@@ -15,6 +15,31 @@ type StringInt struct {
 	ValInt int
 }
 
+func ReadLine(filepath string) ([]string, error) {
+	b, err := os.ReadFile(filepath)
+	if err != nil {
+		return nil, err
+	}
+	buf := bytes.NewBuffer(b)
+
+	reader := bufio.NewReader(buf)
+	res := make([]string, 0)
+	for {
+		line, prefix, err := reader.ReadLine()
+		if errors.Is(err, io.EOF) {
+			break
+		}
+		if err != nil {
+			return nil, err
+		}
+		if prefix {
+			continue
+		}
+		res = append(res, string(line))
+	}
+	return res, nil
+}
+
 func ReadLineAsStringInt(filepath string) ([]StringInt, error) {
 	b, err := os.ReadFile(filepath)
 	if err != nil {
